@@ -87,12 +87,18 @@ run_analysis <- function(){
             if(!exists("resultset")){ # create or append to the data frame, "resultset"
                 resultset <- data.frame(subChunk)
             } else resultset <- cbind(resultset, subChunk)
-            FRnames <- c(FRnames, as.character(subjectNames[i]) %+% "..." %+% as.character(j))
+            FRnames <- c(FRnames, as.character(j))
         }
     }
     # Assign names to rows and columns
     rownames(resultset) <- Features
     colnames(resultset) <- FRnames
+    subjectRow <- vector("character")
+    for (i in 1:length(subjectNames)){
+        subjectRow <- c(subjectRow, rep(subjectNames[i], times = 6))
+    }
+    resultset <- rbind(Subject = subjectRow, resultset)
+    resultset <- cbind(Variable = rownames(resultset), resultset)
     # Cleanup
     rm(chunk)
     rm(activity)
@@ -101,10 +107,9 @@ run_analysis <- function(){
     rm(j)
     rm(subChunk)
 
-    # View result (for easy review)
-    View(resultset)
-
-    #write.table(resultset, file = "UCI HAR Tidy Data.txt", row.name = TRUE)
+    write.table(resultset, file = "UCI HAR Tidy Data.txt", row.name = FALSE)
+    verify <- read.table("UCI HAR Tidy Data.txt")
+    View(verify)
 }
 
 # The tidy data is now prepared and written to a table for submission and review.

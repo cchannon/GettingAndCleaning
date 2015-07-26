@@ -7,7 +7,7 @@ To review this data:
 - Ensure the UCI HAR Dataset folder (with all files and subfolders inside) is saved in your working directory (to test this, type, "list.files()").
 - Source the run_analysis.R file into R and call the function run_analysis() - no input parameters are required.
 
-The function will open a view() of the tidy dataset for your review.
+The function will save to the working directory a text file copy of the tidy data set (rownames = FALSE), then open a view() of the tidy dataset for your review.
 
 --------
 
