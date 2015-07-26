@@ -1,8 +1,3 @@
-##STILL TO BE DONE:
-# Write codebook
-# Write README
-
-
 ##---------------------------------------------------##
 ## run_analysis.R
 
